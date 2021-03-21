@@ -1,0 +1,11 @@
+@import '../../sass/_variables';
+
+.headerWrapper {
+    display: flex;
+    width: 100%;
+    height: $headerHeight;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center; 
+    background-color: $colorPrimaryBackground;
+}

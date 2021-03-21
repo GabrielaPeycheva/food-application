@@ -1,0 +1,31 @@
+.styledButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.8em 3em;
+    border: 0.16em solid #FFFFFF;
+    margin: 0 0.3em 0.3em 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #FFFFFF;
+    transition: all 0.15s;
+    cursor: pointer;
+    
+    &:hover {
+        color:#d38e0d;
+        background: #f5eeeee1;
+        border: 0.16em solid transparent;
+    }
+    &:active {
+        color:#FFFFFF;
+        background: #d38e0d;
+        border: 0.16em solid transparent;
+    }
+}
+@media all and (max-width:30em) {
+    .styledButton{
+        margin: 0.4em auto;
+    }
+}

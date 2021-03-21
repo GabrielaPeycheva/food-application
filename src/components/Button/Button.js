@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './Button.module.scss';
 
-const Button = (props) => {
+const Button = ({ onClick, type }) => {
 
     const buttonType = (type) => {
         switch (type) {
@@ -10,15 +10,16 @@ const Button = (props) => {
             case 'ok': return 'ok';
             default: return '';
         }
-    }
+    };
+
     return (
         <div
             className={styles.styledButton}
-            onClick={() => console.log('kliknat sum')}
+            onClick={onClick}
         >
-            {buttonType(props.type)}
+            {buttonType(type)}
         </div>
-    )
-}
+    );
+};
 
 export default Button;

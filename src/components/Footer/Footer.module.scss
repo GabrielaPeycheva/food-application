@@ -1,0 +1,18 @@
+@import '../../sass/_variables';
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: #FFF;
+  font-size: 1.2em;
+  background-color: $colorPrimaryBackground;
+  padding: 20px;
+
+
+  .rights {
+    display: flex;
+    justify-content: center;
+  }
+}

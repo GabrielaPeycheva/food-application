@@ -1,36 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Home from './pages/Home/Home';
 import RecipePage from './pages/Recipes/RecipePage/RecipePage';
-import * as foodService from './services/foodService';
+import Footer from './components/Footer/Footer';
 
 import './App.scss';
 
 
-const App = (props) => {
-
-  const [trivialFact, setTrivialFact] = useState({});
-  // const [recipes, setRecipes] = useState([]);
-
-  useEffect( () => {
-    foodService.getTrivialFact()
-    .then(res => setTrivialFact(res))
-  }, [])
-
-  // useEffect(() => {
-  //   foodService.getRandomRecipes()
-  //     .then(res => setRecipes({recipes: res.recipes}))
-  // }, [])
+const App = () => {
 
   return (
-    <React.Fragment>
-      <div className="body">
-        <Header />
-        <Home {...trivialFact} />
-        <RecipePage />
-      </div>
-    </React.Fragment>
+    <div className="body">
+      <Header />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/recipes" component={RecipePage} />
+        <Route render={() => <h1> ERROR 404</h1>} />
+      </Switch>
+      <Footer />
+    </div>
   );
-}
+};
 
 export default App;

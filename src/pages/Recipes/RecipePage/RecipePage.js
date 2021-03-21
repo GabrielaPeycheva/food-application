@@ -9,13 +9,16 @@ const RecipePage = (props) => {
 
     useEffect(() => {
         foodService.getRandomRecipes()
-            .then(res => setRecipes({ recipes: res.recipes }))
+            .then(res => {
+                setRecipes(res)
+            });
     }, []);
-
+    
     return (
         <div className={styles.recipePageContainer}>
             <RecipeList {...recipes} />
         </div>
-    )
-}
+    );
+};
+
 export default RecipePage;

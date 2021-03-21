@@ -1,0 +1,11 @@
+@import '../../sass/_variables';
+
+.spinnerContainer {
+  box-sizing: border-box;
+  background-color: $colorFadedWhite;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,13 @@
+@import '../../sass/_variables';
+
+.navlink {
+    margin: 0 15px;
+    &:hover {
+        font-weight: bold;
+    }
+
+    &:global(.active) {
+        font-weight: bold; 
+    }
+}
+

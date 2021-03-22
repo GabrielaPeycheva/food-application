@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as foodService from '../../services/foodService';
 import Button from '../../components/Button/Button';
 

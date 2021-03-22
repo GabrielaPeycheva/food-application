@@ -5,8 +5,8 @@ import styles from './Navigation.module.scss';
 const Navigation = () => {
     return (
         <React.Fragment>
-            <NavLink to="/recipes">All Recepies</NavLink>
-            <NavLink to="/fun-facts">Fun Food Facts</NavLink>
+             <NavLink to="/recipes" className={styles.navlink} >All Recepies</NavLink>
+            <NavLink to="/fun-facts" className={styles.navlink}>Fun Food Facts</NavLink>
         </React.Fragment>
     );
 };

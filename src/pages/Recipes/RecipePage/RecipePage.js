@@ -24,7 +24,6 @@ const RecipePage = () => {
 
     return (
         <div className={styles.recipePageContainer}>
-            <p>Find your dream recipe</p>
             <SearchInput onClick={onClick} />
             <RecipeList recipes={recipes} />
         </div>

@@ -9,51 +9,49 @@
     --bez: cubic-bezier(0, 0, 0.43, 1.49);
 }
 
-.mainWrapper {
-    min-width: 100%;
-    .searchWrapper {
-        position: relative;
-        background: var(--color-brand);
+.searchWrapper {
+    position: relative;
+    background: var(--color-brand);
+    border-radius: var(--rad);
+
+    .input, .buttonSearch {
+        height: var(--height);
+        border: 0;
+        color: var(--color-dark);
+        font-size: 1.5em;
+    }
+
+    .input {
+        width: 100%;
+        background: var(--color-light);
+        padding: 0 1rem;
         border-radius: var(--rad);
+        appearance: none;
+        transition: all var(--dur) var(--bez);
+        transition-property: width, border-radius;
+        z-index: 1;
+        position: relative;
+    }
 
-        .input, .buttonSearch {
-            height: var(--height);
-            border: 0;
-            color: var(--color-dark);
-            font-size: 1.5em;
-        }
+    .buttonSearch {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: var(--btn-width);
+        font-weight: bold;
+        background: var(--color-brand);
+        border-radius: 0 var(--rad) var(--rad) 0;
+    }
 
-        .input {
-            width: 40%;
-            background: var(--color-light);
-            padding: 0 1rem;
-            border-radius: var(--rad);
-            appearance: none;
-            transition: all var(--dur) var(--bez);
-            transition-property: width, border-radius;
-            z-index: 1;
-            position: relative;
-        }
-
-        .buttonSearch {
-            display: none;
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: var(--btn-width);
-            font-weight: bold;
-            background: var(--color-brand);
-            border-radius: 0 var(--rad) var(--rad) 0;
-        }
-
-        .input:not(:placeholder-shown) {
-            border-radius: var(--rad) 0 0 var(--rad);
-            width: calc(100% - var(--btn-width));
-            + .buttonSearch {
-                display: block;
-            }
+    .input:not(:placeholder-shown) {
+        border-radius: var(--rad) 0 0 var(--rad);
+        width: calc(100% - var(--btn-width));
+        + .buttonSearch {
+            display: block;
         }
     }
 }
+
 
 

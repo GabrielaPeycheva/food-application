@@ -2,12 +2,15 @@
 
 .navlink {
     margin: 0 15px;
+    border: 1px solid #FFF;
+    padding: 5px;
     &:hover {
-        font-weight: bold;
+        color: #cdc8c8;
     }
 
     &:global(.active) {
-        font-weight: bold; 
+        font-weight: bold;
+        color:orange;
     }
 }
 

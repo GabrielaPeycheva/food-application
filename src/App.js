@@ -7,20 +7,19 @@ import Footer from './components/Footer/Footer';
 
 import './App.scss';
 
-
 const App = () => {
 
-  return (
-    <div className="body">
-      <Header />
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/recipes" component={RecipePage} />
-        <Route render={() => <h1> ERROR 404</h1>} />
-      </Switch>
-      <Footer />
-    </div>
-  );
+    return (
+        <div className="body">
+            <Header />
+            <Switch>
+                <Route path="/" exact component={Home} />
+                <Route path="/recipes" component={RecipePage} />
+                <Route render={() => <h1> ERROR 404</h1>} />
+            </Switch>
+            <Footer />
+        </div>
+    );
 };
 
 export default App;

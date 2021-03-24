@@ -13,16 +13,10 @@
     align-items: center; 
     background-color: $colorPrimaryBackground;
 
-    .logo {
-        width: 55px;
-        height: 55px;
-        display: flex;
-        flex-grow: 1;
-        margin: 0 20px;
-    }
     .navigation {
         display: flex;
         flex-grow: 3;
         justify-content: flex-end;
     }
 }
+

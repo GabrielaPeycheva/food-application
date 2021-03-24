@@ -1,0 +1,57 @@
+.modalWrapper {
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2147483647;
+    background-color: rgba(0, 0, 0, 0.6);
+
+    .modal {
+        transition: opacity 0.25s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 700px;
+        max-width: 850px;
+        max-height: 95vh;
+        padding: 30px;
+        background-size: 50%, 50%;
+        box-shadow: 5px 5px 10px black;
+        background: white;
+        border-top-right-radius: 16px;
+        border-bottom-left-radius: 16px;
+
+        h2 { text-align: center; }
+        img { margin: auto; }
+        p {
+            text-align: left;
+            margin: 5px 0;
+        }
+
+        .close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            height: 16px;
+            text-decoration: none;
+            width: 16px;
+
+            svg {
+                width: 16px;
+            }
+        }
+    }
+
+    .showModal {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+}
+
+

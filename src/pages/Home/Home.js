@@ -10,7 +10,7 @@ const Home = (props) => {
     const onClickGetNew = () => {
         foodService.getTrivialFact()
             .then(res => {
-                const result = res;
+                // const result = res;
                 setTrivialFact(res);
             });
     };

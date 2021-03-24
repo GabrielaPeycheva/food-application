@@ -1,0 +1,18 @@
+.logo {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.2em;
+    font-weight: bold;
+    color: orange;
+
+    span {
+        margin: 0 15px;
+    }
+
+    img {
+        width: 55px;
+        height: 55px;
+    }
+}

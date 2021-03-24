@@ -5,7 +5,7 @@ import * as foodService from '../../../services/foodService';
 
 import styles from './RecipePage.module.scss';
 
-const RecipePage = () => {
+const RecipePage = (props) => {
     const [recipes, setRecipes] = useState([]);
 
     const onClick = (params) => {
@@ -25,7 +25,7 @@ const RecipePage = () => {
     return (
         <div className={styles.recipePageContainer}>
             <SearchInput onClick={onClick} />
-            <RecipeList recipes={recipes} />
+            <RecipeList recipes={recipes} match={props.match}/>
         </div>
     );
 };

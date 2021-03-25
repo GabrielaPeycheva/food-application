@@ -10,17 +10,12 @@ import styles from './RecipeList.module.scss';
 const RecipeList = ({ recipes }) => {
     const [recipeDetails, setRecipeDetails] = useState({});
     const [isModalOpen, setIsModalOpen] = useState(false);
-    // const [isLoading, setIsLoading] = useState(false);
 
     const getDetail = (value) => {
-        // if(!isLoading) {
-        //     setIsLoading(true);
             foodService.getRecipeDetail(value)
                 .then(res =>
                     setRecipeDetails({steps: res.analyzedInstructions[0].steps, title: res.title, image: res.image, readyInMinutes: res.readyInMinutes}));
             setIsModalOpen(true);
-        // }
-        // setIsLoading(false);
     }
 
     return (
@@ -28,15 +23,17 @@ const RecipeList = ({ recipes }) => {
             { recipes && recipes.length ?
                 recipes.map((res) =>
                     <NavLink to={{pathname: "/recipes/details/id", search:`${res.id}`}} key={res.id}>
-                        <div className={styles.recipeContainer}>
+                        <div className={styles.recipeContainer} onClick={() => getDetail(res.id)}>
                             <p>{res.title}</p>
                             <img src={res.image} className={styles.recipeImg} width="350" alt={res.title} />
-                            <p onClick={() => getDetail(res.id)}>View recipe</p>
+                            <p>View recipe</p>
                         </div>
                     </NavLink>)
-                : <Spinner/>
+                 : <Spinner/>
             }
-            <Modal recipeDetails={recipeDetails} isModalOpen={isModalOpen} />
+            <div className={`${isModalOpen ? styles.showModal : styles.closeModal}`}>
+                <Modal recipeDetails={recipeDetails} isModalOpen={isModalOpen} handleClose={() => setIsModalOpen(false)} />
+            </div>
         </React.Fragment>
     );
 };

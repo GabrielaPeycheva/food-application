@@ -1,35 +1,36 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Spinner from '../Spinner/Spinner';
 
 import styles from './Modal.module.scss';
 
 const Modal = ({
    recipeDetails,
-   isModalOpen
+   isModalOpen,
+   handleClose,
 }) => {
 
     return (
         <React.Fragment>
             { isModalOpen ?
-                <div className={`${styles.modalWrapper} ${isModalOpen ? styles.showModal : ''}`}>
+                <div className={`${styles.modalWrapper}`}>
                     <div className={styles.modal}>
-                        <NavLink to="" className={styles.close}>
+                        <Link to="/recipes" className={styles.close} onClick={handleClose}>
                             <svg viewBox="0 0 24 24">
                                 <path
                                     d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/>
                             </svg>
-                        </NavLink>
+                        </Link>
                         <h2>{recipeDetails.title}</h2>
                         <img src={recipeDetails.image}  width="350" alt={recipeDetails.title} />
-                        <p>Instructions:</p>
-                        { recipeDetails.steps.map(r =>
-                                <p key={r.step}>{r.number}. {r.step}</p>
+                        <h3>Instructions:</h3>
+                        { recipeDetails.steps && recipeDetails.steps.length && recipeDetails.steps.map(r => {
+                            return    <p key={r.step}>{r.number}. {r.step}</p>
+                        }
                             )}
-                        <p>{recipeDetails.readyInMinutes}</p>
-
-
+                        <p>Cooking time: {recipeDetails.readyInMinutes}</p>
                     </div>
-                </div> : null
+                </div> : <Spinner/>
             }
         </React.Fragment>
     );

@@ -27,4 +27,13 @@
     .recipeImg {
         margin-top: 5px;
     }
+    .showModal {
+        opacity: 1 !important;
+        visibility: visible !important;
+        animation: showModal .2s ease-out 1 forwards;
+    }
+    .closeModal {
+        opacity: 0 !important;
+        visibility: hidden !important;
+    }
 }

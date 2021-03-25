@@ -7,7 +7,7 @@ import Footer from './components/Footer/Footer';
 
 import './App.scss';
 
-const App = () => {
+function App() {
 
     return (
         <div className="body">

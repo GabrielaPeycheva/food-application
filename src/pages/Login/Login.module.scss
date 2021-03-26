@@ -1,0 +1,102 @@
+@import '../../sass/_variables';
+
+.wrapperContainer {
+    width: 100%;
+    transition: visibility 0.2s ease-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    .register {
+        flex-direction: column;
+        display: flex;
+        background: $colorFadedWhite;
+        padding: 10px 20px;
+        box-sizing: border-box;
+        min-width: 310px;
+    }
+
+    .header {
+        text-align: center;
+        padding: 5px;
+        margin-bottom: 17px;
+        font-family: Ozxgen, sans-serif;
+        font-size: 22px;
+        border-bottom: 2px solid #fff;
+    }
+
+    .box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .inputGroup {
+            display: flex;
+            flex-direction: column;
+            margin-top: 5px;
+            margin-bottom: 5px;
+
+            .logInput {
+                height: 2.1em;
+                border-radius: 3px;
+                border: 1px solid $blue_theme;
+                transition: border 0.4s ease-out;
+                padding: 13px;
+                font-family: Oxygen, sans-serif;
+                font-size: 19px;
+                color: #3e3e42;
+                background: #FFF;
+
+                &:hover {
+                    border: 2px solid $blue_theme;
+                }
+
+                &:focus {
+                    border: 2px solid #6565e7;
+                    box-shadow: 0px 0px 20px rgba(15, 15, 15, 0.2);
+                }
+
+                &::placeholder {
+                    font-family: Oxygen, sans-serif;
+                    font-size: 16px;
+                    color: rgba(15, 15, 15, 0.4);
+                }
+            }
+        }
+    }
+    .logBtn {
+        padding: 2px 30px;
+        border: 0;
+        font-size: 18px;
+        border-radius: 3px;
+        font-family: Oxygen, sans-serif;
+        background-color: rgba(15, 15, 15, 0.03);
+        margin-top: 20px;
+        border: 2px solid #d0a551;
+        transition: background-color 0.3s ease-out;
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+            background-color: orange;
+            color: white;
+        }
+    }
+
+    .passwordState {
+        display: flex;
+        flex-direction: row;
+        margin-top: 20px;
+
+    }
+
+    .dangerError {
+        color: #e74c3c;
+        font-size: 16px;
+    }
+    .show {
+        visibility: visible;
+    }
+}
+

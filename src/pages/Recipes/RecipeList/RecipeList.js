@@ -14,7 +14,10 @@ const RecipeList = ({ recipes }) => {
     const getDetail = (value) => {
             foodService.getRecipeDetail(value)
                 .then(res =>
-                    setRecipeDetails({steps: res.analyzedInstructions[0].steps, title: res.title, image: res.image, readyInMinutes: res.readyInMinutes}));
+                    setRecipeDetails({steps: res.analyzedInstructions[0].steps, title: res.title,
+                        image: res.image, readyInMinutes: res.readyInMinutes,
+                        ingredients: res.extendedIngredients,
+                    }));
             setIsModalOpen(true);
     }
 

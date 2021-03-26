@@ -11,7 +11,9 @@ const RecipePage = (props) => {
     const onClick = (params) => {
         foodService.getSearchedRecipes(params)
             .then(res => {
+                debugger;
                 setRecipes(res.results)
+                debugger;
             });
     }
 

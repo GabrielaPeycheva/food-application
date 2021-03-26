@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import Input from '../../components/Input/Input';
+import Button from '../../components/Button/Button';
 
-import styles from  './Login.module.scss';
+import styles from  './Login-Register.module.scss';
 
 class Login extends Component {
     constructor(props) {
@@ -11,12 +13,15 @@ class Login extends Component {
 
     }
 
-    submitLogin(e) {console.log('log')}
+    submitLogin(e) {
+        e.preventDefault();
+        console.log('log')
+    }
 
     render() {
         return (
             <div className={styles.wrapperContainer}>
-                <div className={styles.register}>
+                <div className={styles.form}>
                     <div className={styles.header}>
                         Login
                     </div>
@@ -24,28 +29,25 @@ class Login extends Component {
 
                         <div className={styles.inputGroup}>
                             <label htmlFor="username">Username</label>
-                            <input
+                            <Input
                                 type="text"
                                 name="username"
-                                className={styles.logInput}
                                 placeholder="Username"/>
                         </div>
 
                         <div className={styles.inputGroup}>
                             <label htmlFor="password">Password</label>
-                            <input
+                            <Input
                                 type="password"
                                 name="password"
-                                className={styles.logInput}
                                 placeholder="Password"/>
                         </div>
 
-                        <button
-                            type="button"
-                            className={styles.logBtn}
+                        <Button
+                            type="login"
                             onClick={this
                                 .submitLogin
-                                .bind(this)}>Login</button>
+                                .bind(this)}/>
 
                     </div>
                 <NavLink to="/register">Register now</NavLink>

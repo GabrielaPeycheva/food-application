@@ -1,0 +1,28 @@
+@import '../../sass/_variables';
+
+.input {
+    height: 2.1em;
+    border-radius: 3px;
+    border: 1px solid $blue_theme;
+    transition: border 0.4s ease-out;
+    padding: 13px;
+    font-family: Oxygen, sans-serif;
+    font-size: 19px;
+    color: #3e3e42;
+    background: #FFF;
+
+    &:hover {
+        border: 2px solid $blue_theme;
+    }
+
+    &:focus {
+        border: 2px solid #6565e7;
+        box-shadow: 0px 0px 20px rgba(15, 15, 15, 0.2);
+    }
+
+    &::placeholder {
+        font-family: Oxygen, sans-serif;
+        font-size: 16px;
+        color: rgba(15, 15, 15, 0.4);
+    }
+}

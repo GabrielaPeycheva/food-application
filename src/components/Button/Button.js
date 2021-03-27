@@ -6,8 +6,8 @@ const Button = ({ onClick, type }) => {
 
     const buttonType = (type) => {
         switch (type) {
-            case 'refresh': return 'get new';
-            case 'login': return 'login';
+            case 'refresh': return 'get new fact';
+            case 'login': return 'sign in';
             case 'register': return 'register'
             default: return '';
         }

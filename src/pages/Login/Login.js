@@ -50,7 +50,7 @@ class Login extends Component {
                                 .bind(this)}/>
 
                     </div>
-                <NavLink to="/register">Register now</NavLink>
+                <NavLink to="/register" className={styles.registerBtn}>Register now</NavLink>
             </div>
         </div>
         );

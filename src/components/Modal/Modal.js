@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Spinner from '../Spinner/Spinner';
 
 import styles from './Modal.module.scss';
 
@@ -8,7 +9,6 @@ const Modal = ({
    isModalOpen,
    handleClose,
 }) => {
-
     return (
         <React.Fragment>
             { isModalOpen && recipeDetails ?
@@ -23,18 +23,21 @@ const Modal = ({
                         <h2>{recipeDetails.title}</h2>
                         <img src={recipeDetails.image}  width="350" alt={recipeDetails.title} />
                         <h3>Ingredients:</h3>
-                        { recipeDetails.ingredients && recipeDetails.ingredients.length && recipeDetails.ingredients.map(ing => {
-                              return <p key={ing.id}>{ing.name}</p>
+                        <div className={styles.ingrWrapper}>
+                        { recipeDetails.ingredients && recipeDetails.ingredients.length && recipeDetails.ingredients.map((ing,i) => {
+                              return <p key={ing.id + i}>- {ing.name}</p>
                             })
                         }
+                        </div>
                         <h3>Instructions:</h3>
                         { recipeDetails.steps && recipeDetails.steps.length && recipeDetails.steps.map(r => {
                             return <p key={r.step}>{r.number}. {r.step}</p>
                                 })
                         }
-                        <p>Cooking time: {recipeDetails.readyInMinutes}</p>
+                        <p><b>Cooking time:</b> {recipeDetails.readyInMinutes}min</p>
+                        <h2>Enjoy!</h2>
                     </div>
-                </div> : null
+                </div> : <Spinner/>
             }
         </React.Fragment>
     );

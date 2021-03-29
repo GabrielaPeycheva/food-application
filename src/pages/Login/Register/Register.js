@@ -54,7 +54,7 @@ class Register extends Component {
         this.setState({password: e.target.value});
 
         if (e.target.value.length < 8) {
-            this.showValidationErr("password", "123123");
+            this.showValidationErr("password", "Your password must be at least 8 characters");
         }else {
             this.clearValidationErr("password");
         }
@@ -65,13 +65,13 @@ class Register extends Component {
     submitRegister(e) {
         e.preventDefault()
 
-        if (this.state.username === "") {
+        if (this.state.username === '') {
             this.showValidationErr("username", "Username Cannot be empty!");
         }
-        if (this.state.email === "") {
+        if (this.state.email === '') {
             this.showValidationErr("email", "Email Cannot be empty!");
         }
-        if (this.state.password === "") {
+        if (this.state.password === '') {
             this.showValidationErr("password", "Password Cannot be empty!");
         }
 

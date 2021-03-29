@@ -11,9 +11,7 @@ const RecipePage = (props) => {
     const onClick = (params) => {
         foodService.getSearchedRecipes(params)
             .then(res => {
-                debugger;
                 setRecipes(res.results)
-                debugger;
             });
     }
 
@@ -27,7 +25,10 @@ const RecipePage = (props) => {
     return (
         <div className={styles.recipePageContainer}>
             <SearchInput onClick={onClick} />
-            <RecipeList recipes={recipes} match={props.match}/>
+            {
+                recipes && recipes.length ? <RecipeList recipes={recipes} match={props.match}/>
+                : <h1>Sorry, we did not found recipes with this name :(</h1>
+            }
         </div>
     );
 };

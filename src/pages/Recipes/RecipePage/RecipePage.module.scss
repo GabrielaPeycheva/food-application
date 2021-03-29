@@ -5,7 +5,9 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
     align-items: center;
-    margin: 5%;
+    //margin: 5%;
+    overflow: auto;
+    height: 100%;
 
     h1 {
         background: $colorFadedWhite;

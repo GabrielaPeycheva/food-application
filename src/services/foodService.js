@@ -17,7 +17,7 @@ export const getRandomRecipes = () => {
 };
 
 export const getSearchedRecipes = (value) => {
-        return fetch(`${baseURL}/recipes/complexSearch?query=${value}&number=12&${apiKey}`)
+        return fetch(`${baseURL}/recipes/complexSearch?query=${value}&number=120&${apiKey}`)
             .then(res => res.json())
             .catch(error => console.log(error));
 };

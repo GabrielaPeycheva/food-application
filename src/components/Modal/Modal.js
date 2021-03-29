@@ -5,14 +5,15 @@ import Spinner from '../Spinner/Spinner';
 import styles from './Modal.module.scss';
 
 const Modal = ({
-   recipeDetails,
-   isModalOpen,
-   handleClose,
+    recipeDetails,
+    isModalOpen,
+    handleClose,
+    isLoading
 }) => {
     return (
         <React.Fragment>
-            { isModalOpen && recipeDetails ?
-                <div className={`${styles.modalWrapper}`}>
+            { isModalOpen && recipeDetails
+                ? <div className={`${styles.modalWrapper}`}>
                     <div className={styles.modal}>
                         <Link to="/recipes" className={styles.close} onClick={handleClose}>
                             <svg viewBox="0 0 24 24">
@@ -21,7 +22,7 @@ const Modal = ({
                             </svg>
                         </Link>
                         <h2>{recipeDetails.title}</h2>
-                        <img src={recipeDetails.image}  width="350" alt={recipeDetails.title} />
+                        <img src={recipeDetails.image}  alt={recipeDetails.title} />
                         <h3>Ingredients:</h3>
                         <div className={styles.ingrWrapper}>
                         { recipeDetails.ingredients && recipeDetails.ingredients.length && recipeDetails.ingredients.map((ing,i) => {
@@ -37,7 +38,10 @@ const Modal = ({
                         <p><b>Cooking time:</b> {recipeDetails.readyInMinutes}min</p>
                         <h2>Enjoy!</h2>
                     </div>
-                </div> : <Spinner/>
+                    </div>
+                // : isLoading
+                //     ? <Spinner />
+                    : null
             }
         </React.Fragment>
     );

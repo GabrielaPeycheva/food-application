@@ -10,18 +10,24 @@ import styles from './RecipeList.module.scss';
 const RecipeList = ({ recipes }) => {
     const [recipeDetails, setRecipeDetails] = useState({});
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const user ={};
     const getDetails = (value) => {
-            foodService.getRecipeDetail(value)
-                .then(res =>
+        setIsLoading(true);
+        foodService.getRecipeDetail(value)
+                .then(res => {
                     setRecipeDetails({
                         steps: res.analyzedInstructions[0].steps, title: res.title,
                         image: res.image,
                         readyInMinutes: res.readyInMinutes,
                         ingredients: res.extendedIngredients,
-                    }));
-            setIsModalOpen(true);
+                    })
+                    setIsModalOpen(true);
+                }
+                );
+
+        setIsLoading(false);
             window.sessionStorage.setItem(user, JSON.stringify(recipeDetails));
     }
 
@@ -39,7 +45,15 @@ const RecipeList = ({ recipes }) => {
                  : <Spinner/>
             }
             <div className={`${isModalOpen ? styles.showModal : styles.closeModal}`}>
-                <Modal recipeDetails={recipeDetails} isModalOpen={isModalOpen} handleClose={() => setIsModalOpen(false)} />
+                <Modal
+                    recipeDetails={recipeDetails}
+                    isModalOpen={isModalOpen}
+                    isLoading={isLoading}
+                    handleClose={() => {
+                        setIsModalOpen(false);
+                        setRecipeDetails({})
+                    }}
+                />
             </div>
         </React.Fragment>
     );

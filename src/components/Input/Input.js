@@ -5,7 +5,8 @@ import styles from './Input.module.scss';
 const Input = ({
     type,
     name,
-    placeholder
+    placeholder,
+    onChange
 }) => {
     return (
         <input
@@ -13,6 +14,7 @@ const Input = ({
             name={name}
             className={styles.input}
             placeholder={placeholder}
+            onChange={onChange}
         />
     )
 }

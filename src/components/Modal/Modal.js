@@ -39,8 +39,8 @@ const Modal = ({
                         <h2>Enjoy!</h2>
                     </div>
                     </div>
-                // : isLoading
-                //     ? <Spinner />
+                : isLoading
+                    ? <Spinner />
                     : null
             }
         </React.Fragment>

@@ -4,6 +4,8 @@ import Button from '../../../components/Button/Button';
 
 import styles from '../Login-Register.module.scss';
 
+const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 class Register extends Component {
     constructor(props) {
         super(props);
@@ -13,7 +15,6 @@ class Register extends Component {
             email: '',
             password: '',
             errors: [],
-            pwdState: ''
         };
     }
 
@@ -41,44 +42,38 @@ class Register extends Component {
     }
 
     onUsernameChange(e) {
-        this.setState({username: e.target.value});
+        this.setState({username: e.target.value.trim()});
         this.clearValidationErr("username");
     }
 
     onEmailChange(e) {
-        this.setState({email: e.target.value});
+        this.setState({email: e.target.value.trim()});
         this.clearValidationErr("email");
     }
 
-    onBlur(e) {
-        this.setState({password: e.target.value});
-
-        if (e.target.value.length < 8) {
-            this.showValidationErr("password", "Your password must be at least 8 characters");
-        }else {
-            this.clearValidationErr("password");
-        }
-
+    onChangePassword(e) {
+        this.setState({password: e.target.value.trim()});
+        this.clearValidationErr("password");
     }
 
 
     submitRegister(e) {
-        e.preventDefault()
+        e.preventDefault();
 
-        if (this.state.username === '') {
-            this.showValidationErr("username", "Username Cannot be empty!");
+        if (this.state.username === '' || this.state.username.length < 3) {
+            this.showValidationErr("username", "Your password must be at least 3 characters");
         }
-        if (this.state.email === '') {
-            this.showValidationErr("email", "Email Cannot be empty!");
+        if (this.state.email === '' || !emailRegex.test(this.state.email)) {
+            this.showValidationErr("email", "Your email is invalid");
         }
-        if (this.state.password === '') {
-            this.showValidationErr("password", "Password Cannot be empty!");
+        if (this.state.password === '' || this.state.password.length < 5) {
+            this.showValidationErr("password", "Your password must be at least 5 characters");
         }
 
     }
 
     render() {
-
+        console.log(this.state.username.length)
         let usernameErr = null,
             passwordErr = null,
             emailErr = null;
@@ -116,12 +111,10 @@ class Register extends Component {
                         <div className={styles.inputGroup}>
                             <label htmlFor="email">Email</label>
                             <Input
-                                type="text"
+                                type="email"
                                 name="email"
                                 placeholder="Email"
-                                onChange={this
-                                    .onEmailChange
-                                    .bind(this)}/>
+                                onChange={this.onEmailChange.bind(this)}/>
                             <small className={styles.dangerError}>{emailErr ? emailErr : ""}</small>
                         </div>
 
@@ -131,7 +124,7 @@ class Register extends Component {
                                 type="password"
                                 name="password"
                                 placeholder="Password"
-                                onBlur={this.onBlur.bind(this)}/>
+                                onChange={this.onChangePassword.bind(this)}/>
                             <small className={styles.dangerError}>{passwordErr ? passwordErr : ""}</small>
                         </div>
 

@@ -2,24 +2,26 @@ import React from 'react';
 
 import styles from './Button.module.scss';
 
-const Button = ({ onClick, type }) => {
+const Button = ({ onClick, name }) => {
 
-    const buttonType = (type) => {
-        switch (type) {
+    const buttonType = (name) => {
+        switch (name) {
             case 'refresh': return 'get new fact';
             case 'login': return 'sign in';
-            case 'register': return 'register'
+            case 'register': return 'register';
+            case 'signout': return  'sign out';
+            case 'home': return  'go to homepage';
             default: return '';
         }
     };
 
     return (
-        <div
+        <button
             className={styles.styledButton}
             onClick={onClick}
         >
-            {buttonType(type)}
-        </div>
+            {buttonType(name)}
+        </button>
     );
 };
 

@@ -1,141 +1,57 @@
-import React, { Component } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../components/Auth/Auth';
+import config from '../../../config';
 import Input from '../../../components/Input/Input';
 import Button from '../../../components/Button/Button';
 
 import styles from '../Login-Register.module.scss';
 
-const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const Register = () => {
 
-class Register extends Component {
-    constructor(props) {
-        super(props);
+    const [err, setErr] = useState('');
 
-        this.state = {
-            username: '',
-            email: '',
-            password: '',
-            errors: [],
-        };
-    }
-
-    showValidationErr(elm, msg) {
-        this.setState((prevState) => ({
-            errors: [
-                ...prevState.errors, {
-                    elm,
-                    msg
-                }
-            ]
-        }));
-    }
-
-    clearValidationErr(elm) {
-        this.setState((prevState) => {
-            let newArr = [];
-            for (let err of prevState.errors) {
-                if (elm !== err.elm) {
-                    newArr.push(err);
-                }
-            }
-            return {errors: newArr};
-        });
-    }
-
-    onUsernameChange(e) {
-        this.setState({username: e.target.value.trim()});
-        this.clearValidationErr("username");
-    }
-
-    onEmailChange(e) {
-        this.setState({email: e.target.value.trim()});
-        this.clearValidationErr("email");
-    }
-
-    onChangePassword(e) {
-        this.setState({password: e.target.value.trim()});
-        this.clearValidationErr("password");
-    }
-
-
-    submitRegister(e) {
-        e.preventDefault();
-
-        if (this.state.username === '' || this.state.username.length < 3) {
-            this.showValidationErr("username", "Your password must be at least 3 characters");
+    const handleRegister = useCallback(async event => {
+        event.preventDefault();
+        const { email, password } = event.target.elements;
+        try {
+            await config
+                .auth()
+                .createUserWithEmailAndPassword(email.value, password.value);
+        } catch (error) {
+            setErr(error.message);
         }
-        if (this.state.email === '' || !emailRegex.test(this.state.email)) {
-            this.showValidationErr("email", "Your email is invalid");
-        }
-        if (this.state.password === '' || this.state.password.length < 5) {
-            this.showValidationErr("password", "Your password must be at least 5 characters");
-        }
+    }, []);
 
-    }
+    const { currentUser } = useContext(AuthContext);
 
-    render() {
-        console.log(this.state.username.length)
-        let usernameErr = null,
-            passwordErr = null,
-            emailErr = null;
-
-        for (let err of this.state.errors) {
-            if (err.elm === "username") {
-                usernameErr = err.msg;
-            }
-            if (err.elm === "password") {
-                passwordErr = err.msg;
-            }
-            if (err.elm === "email") {
-                emailErr = err.msg;
-            }
-        }
-
+    if (currentUser) {
         return (
             <div className={styles.wrapperContainer}>
-                <div className={styles.form}>
-                    <div className={styles.header}>
-                        Register
-                    </div>
-                    <div className={styles.box}>
-
-                        <div className={styles.inputGroup}>
-                            <label htmlFor="username">Username</label>
-                            <Input
-                                type="text"
-                                name="username"
-                                placeholder="Username"
-                                onChange={this.onUsernameChange.bind(this)}/>
-                            <small className={styles.dangerError}>{usernameErr ? usernameErr : ""}</small>
-                        </div>
-
-                        <div className={styles.inputGroup}>
-                            <label htmlFor="email">Email</label>
-                            <Input
-                                type="email"
-                                name="email"
-                                placeholder="Email"
-                                onChange={this.onEmailChange.bind(this)}/>
-                            <small className={styles.dangerError}>{emailErr ? emailErr : ""}</small>
-                        </div>
-
-                        <div className={styles.inputGroup}>
-                            <label htmlFor="password">Password</label>
-                            <Input
-                                type="password"
-                                name="password"
-                                placeholder="Password"
-                                onChange={this.onChangePassword.bind(this)}/>
-                            <small className={styles.dangerError}>{passwordErr ? passwordErr : ""}</small>
-                        </div>
-
-                        <Button
-                            type="register"
-                            onClick={this.submitRegister.bind(this)} />
-                    </div>
-                </div>
+                <p className={styles.signedIn}>Successful Registration!</p>
+                <Link to="/"><Button name="home"/></Link>
             </div>
-        );
+        )
     }
-}
+    return (
+        <div className={styles.wrapperContainer}>
+            <h1 className={styles.header}>Register</h1>
+            <form onSubmit={handleRegister}>
+                <div className={styles.box}>
+                    <div className={styles.inputGroup}>
+                        <label htmlFor='email'>Email</label>
+                        <Input name='email' type="email" placeholder="Email" />
+                    </div>
+                    <div className={styles.inputGroup}>
+                        <label htmlFor='password'>Password</label>
+                        <Input name="password" type="password" placeholder="Password" />
+                        {err ? <small className={styles.dangerError}>{err}</small> : null }
+                    </div>
+                    <Button type="submit" name='register' />
+                </div>
+            </form>
+        </div>
+    );
+};
 
 export default Register;

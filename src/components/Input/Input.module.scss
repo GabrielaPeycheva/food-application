@@ -3,13 +3,14 @@
 .input {
     height: 2.1em;
     border-radius: 3px;
-    border: 1px solid $blue_theme;
+    border: 2px solid $blue_theme;
     transition: border 0.4s ease-out;
     padding: 13px;
     font-family: Oxygen, sans-serif;
     font-size: 19px;
     color: #3e3e42;
     background: #FFF;
+    box-sizing: border-box;
 
     &:hover {
         border: 2px solid $blue_theme;
@@ -23,6 +24,6 @@
     &::placeholder {
         font-family: Oxygen, sans-serif;
         font-size: 16px;
-        color: rgba(15, 15, 15, 0.4);
+        color: rgb(9, 6, 65);
     }
 }

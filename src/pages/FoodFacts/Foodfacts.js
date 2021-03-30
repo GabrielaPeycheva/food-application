@@ -21,7 +21,7 @@ const FoodFacts = () => {
             <h2>You can found here some interesting facts about food :)</h2>
             <p key={trivialFact.text}>{trivialFact.text}</p>
             <span>If you want to read another fact just click on the button and.. voila</span>
-            <Button type="refresh" onClick={onClickGetNew} />
+            <Button type="submit" name='refresh' onClick={onClickGetNew} />
         </div>
     );
 };

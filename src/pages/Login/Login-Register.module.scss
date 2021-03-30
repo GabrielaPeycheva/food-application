@@ -1,18 +1,19 @@
 @import '../../sass/variables';
 
 .wrapperContainer {
-    width: 100%;
-    transition: visibility 0.2s ease-out;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
     box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    transition: visibility 0.2s ease-out;
+    background: $colorFadedWhite;
 
     .form {
         flex-direction: column;
         display: flex;
-        background: $colorFadedWhite;
         padding: 10px 20px;
         box-sizing: border-box;
         align-items: center;
@@ -52,6 +53,9 @@
         font-size: 16px;
         margin: 5px 0;
         padding: 2px;
+        text-align: center;
+        max-width: 263px;
+        word-break: break-word;
     }
     .show {
         visibility: visible;
@@ -60,6 +64,10 @@
     .registerBtn:hover {
         color: #157919;
         font-weight: bold;
+    }
+
+    .signedIn {
+        font-size: 7em;
     }
 }
 

@@ -1,53 +1,60 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useCallback, useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
+import { AuthContext } from '../../components/Auth/Auth';
+import config from '../../config';
 
 import styles from  './Login-Register.module.scss';
 
 const Login = () => {
-    const [user, setUser] = useState({username:'', password:''});
+    const [err, setErr] = useState('');
 
-   const submitLogin = (e) => {
-        e.preventDefault();
+    const handleLogin = useCallback(
+        async event => {
+            event.preventDefault();
+            const { email, password } = event.target.elements;
+            try {
+                await config
+                    .auth()
+                    .signInWithEmailAndPassword(email.value, password.value);
+            } catch (error) {
+                setErr(error.message);
+            }
+        },
+        []
+    );
+
+    const { currentUser } = useContext(AuthContext);
+
+    if (currentUser) {
+        return (
+            <div className={styles.wrapperContainer}>
+                <p className={styles.signedIn}>Successfully sign in!</p>
+                <Link to="/"><Button name="home"/></Link>
+            </div>
+        )
     }
 
     return (
         <div className={styles.wrapperContainer}>
-            <div className={styles.form}>
-                <div className={styles.header}>
-                    Sign In
-                </div>
+            <h1 className={styles.header}>Sign In</h1>
+            <form className={styles.form} onSubmit={handleLogin}>
                 <div className={styles.box}>
-
                     <div className={styles.inputGroup}>
-                        <label htmlFor="username">Username</label>
-                        <Input
-                            type="text"
-                            name="username"
-                            placeholder="Username"
-                            onChange={(e) => {setUser({...user, username: e.target.value})}}
-                            />
+                        <label htmlFor='email'>Email</label>
+                        <Input name="email" type="email" placeholder="Email" />
                     </div>
-
                     <div className={styles.inputGroup}>
-                        <label htmlFor="password">Password</label>
-                        <Input
-                            type="password"
-                            name="password"
-                            placeholder="Password"
-                            onChange={(e) => {setUser({...user, password: e.target.value})}}
-                            />
+                        <label htmlFor='password'>Password</label>
+                        <Input name="password" type="password" placeholder="Password" />
+                        {err ? <small className={styles.dangerError}>{err}</small> : null}
                     </div>
-
-                    <Button
-                        type="login"
-                        onClick={submitLogin}/>
-
+                    <Button type="submit" name='login' />
                 </div>
-            <NavLink to="/register" className={styles.registerBtn}>Register now</NavLink>
+            </form>
+            <Link to="/register" className={styles.registerBtn}>Register now</Link>
         </div>
-    </div>
     );
 };
 

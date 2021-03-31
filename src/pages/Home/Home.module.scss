@@ -4,8 +4,9 @@
     align-items: center;
     flex-direction: column;
     background: rgba(255, 255, 255, 0.3);
-    //min-height: 75vh;
-    margin: 115px 5% 5%;
+    height: calc(100vh - 137px);
+    margin: 20px 50px;
+    box-sizing: border-box;
 
     .title {
     background: 50% 100% / 50% 50% no-repeat radial-gradient(ellipse at bottom, #fff, transparent, transparent);

@@ -10,9 +10,10 @@ const Modal = ({
     handleClose,
     isLoading
 }) => {
+
     return (
         <React.Fragment>
-            { isModalOpen && recipeDetails
+            {  isModalOpen && recipeDetails
                 ? <div className={`${styles.modalWrapper}`}>
                     <div className={styles.modal}>
                         <Link to="/recipes" className={styles.close} onClick={handleClose}>
@@ -26,14 +27,22 @@ const Modal = ({
                         <h3>Ingredients:</h3>
                         <div className={styles.ingrWrapper}>
                         { recipeDetails.ingredients && recipeDetails.ingredients.length && recipeDetails.ingredients.map((ing,i) => {
-                              return <p key={ing.id + i}>- {ing.name}</p>
+                              return <span key={ing.id + i}>{ing.name}</span>
                             })
                         }
                         </div>
                         <h3>Instructions:</h3>
-                        { recipeDetails.steps && recipeDetails.steps.length && recipeDetails.steps.map(r => {
-                            return <p key={r.step}>{r.number}. {r.step}</p>
+                        { isLoading === false && recipeDetails.steps
+                            ? recipeDetails.steps.map(r => {
+                            // return <p key={r.steps.step}>{r.steps.number}. {r.steps.step}</p>
+                                return (
+                                    <>
+                                        <p><b>{r.name}</b></p>
+                                        {r.steps.map(s => { return <p>{s.number}. {s.step}</p>})}
+                                    </>
+                                )
                                 })
+                            : null
                         }
                         <p><b>Cooking time:</b> {recipeDetails.readyInMinutes}min</p>
                         <h2>Enjoy!</h2>

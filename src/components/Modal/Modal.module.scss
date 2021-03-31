@@ -12,6 +12,25 @@
     background-color: rgba(0, 0, 0, 0.6);
     overflow-y: initial !important;
 
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: #efdbcd transparent;
+    }
+
+    /* Works on Chrome, Edge, and Safari */
+    *::-webkit-scrollbar {
+        width: 15px;
+    }
+
+    *::-webkit-scrollbar-track {
+        background: #d6c2c2;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background-color: #733e3e;
+        //border-radius: 5px;
+    }
+
     .modal {
         transition: opacity 0.25s ease-in-out;
         display: flex;
@@ -19,13 +38,13 @@
         justify-content: flex-start;
         width: 800px;
         //max-width: 850px;
-        height: 90vh;
-        padding: 10px 30px;
+        height: 98vh;
+        padding: 20px 50px;
         background-size: 50%, 50%;
         box-shadow: 5px 5px 10px black;
-        background: #eac2a5;
-        border-top-right-radius: 16px;
-        border-bottom-left-radius: 16px;
+        background: #efdbcd;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
         overflow-y: auto;
         position: relative;
         color: #753f3f;
@@ -34,7 +53,10 @@
             text-align: center;
             font-size: 2em;
         }
-        h3 { text-decoration: underline;}
+        h3 {
+            text-decoration: underline;
+            margin: 10px 0;
+        }
         img {
             margin: auto;
             background-size: contain;
@@ -46,9 +68,18 @@
 
         .ingrWrapper {
             display: flex;
-            flex-direction: column;
+            //flex-direction: column;
             flex-wrap: wrap;
-            height: 150px;
+            //height: 150px;
+            span {
+                background: #864747;
+                padding: 5px 10px;
+                margin: 5px;
+                border-radius: 15px;
+                color: white;
+                text-align: center;
+                min-width: 50px;
+            }
         }
 
         .close {
@@ -62,8 +93,8 @@
 
             svg {
                 position: relative;
-                left: -10px;
-                top: 10px;
+                left: -40px;
+                top: -5px;
                 width: 24px;
             }
         }

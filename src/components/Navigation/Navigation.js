@@ -22,7 +22,9 @@ const Navigation = () => {
                 :
                 <>
                     <NavLink to="/" exact className={styles.navlink} >Home</NavLink>
-                    <NavLink to="/login" className={styles.navlink} >Login</NavLink>
+                    <NavLink to="/login">
+                        <Button name='login' />
+                    </NavLink>
                 </>
             }
         </React.Fragment>

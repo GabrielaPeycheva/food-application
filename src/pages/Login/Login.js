@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import { AuthContext } from '../../components/Auth/Auth';
@@ -29,10 +29,11 @@ const Login = () => {
 
     if (currentUser) {
         return (
-            <div className={styles.wrapperContainer}>
-                <p className={styles.signedIn}>Successfully sign in!</p>
-                <Link to="/"><Button name="home"/></Link>
-            </div>
+            <Redirect to="/recipes" />
+            // <div className={styles.wrapperContainer}>
+            //     <p className={styles.signedIn}>Successfully sign in!</p>
+            //     <Link to="/"><Button name="home"/></Link>
+            // </div>
         )
     }
 

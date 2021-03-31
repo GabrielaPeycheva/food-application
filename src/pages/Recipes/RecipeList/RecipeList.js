@@ -10,25 +10,30 @@ import styles from './RecipeList.module.scss';
 const RecipeList = ({ recipes }) => {
     const [recipeDetails, setRecipeDetails] = useState({});
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     const user ={};
     const getDetails = (value) => {
         setIsLoading(true);
         foodService.getRecipeDetail(value)
                 .then(res => {
+                    let instructions = [];
+                        instructions = res.analyzedInstructions.filter(e => e.steps);
                     setRecipeDetails({
-                        steps: res.analyzedInstructions[0].steps, title: res.title,
+                        steps: instructions,
+                        title: res.title,
                         image: res.image,
                         readyInMinutes: res.readyInMinutes,
                         ingredients: res.extendedIngredients,
+                        // res
                     })
+                    // debugger;
                     setIsModalOpen(true);
-                }
-                );
+                    setIsLoading(false);
+                });
 
-        setIsLoading(false);
-            window.sessionStorage.setItem(user, JSON.stringify(recipeDetails));
+        // setIsLoading(false);
+            // window.sessionStorage.setItem(user, JSON.stringify(recipeDetails));
     }
 
     return (
@@ -44,17 +49,15 @@ const RecipeList = ({ recipes }) => {
                     </NavLink>)
                  : <Spinner/>
             }
-            <div className={`${isModalOpen ? styles.showModal : styles.closeModal}`}>
-                <Modal
-                    recipeDetails={recipeDetails}
-                    isModalOpen={isModalOpen}
-                    isLoading={isLoading}
-                    handleClose={() => {
-                        setIsModalOpen(false);
-                        setRecipeDetails({})
-                    }}
-                />
-            </div>
+            <Modal
+                recipeDetails={recipeDetails}
+                isModalOpen={isModalOpen}
+                isLoading={isLoading}
+                handleClose={() => {
+                    setIsModalOpen(false);
+                    setRecipeDetails({})
+                }}
+            />
         </React.Fragment>
     );
 };

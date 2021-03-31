@@ -6,16 +6,16 @@ html {
     font-family: $fontPrimary;
 }
 
-//*::-webkit-scrollbar {
-//    display: none;
-//}
+body::-webkit-scrollbar {
+    display: none;
+}
 
 body,
 .body {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100vh;
+    //height: 100vh;
     overflow-x: auto;
     color: #FFF;
     //-webkit-text-size-adjust: none;

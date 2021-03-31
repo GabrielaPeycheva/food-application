@@ -7,7 +7,11 @@
     align-items: center;
     //margin: 5%;
     overflow: auto;
-    height: 100%;
+    height: calc(100% - #{$headerHeight});
+    //margin-top: $headerHeight;
+    &::-webkit-scrollbar {
+        //display: none;
+    }
 
     h1 {
         background: $colorFadedWhite;

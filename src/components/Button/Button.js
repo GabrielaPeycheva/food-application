@@ -14,10 +14,10 @@ const Button = ({ onClick, name }) => {
             default: return '';
         }
     };
-
+    console.log(typeof name,'name')
     return (
         <button
-            className={styles.styledButton}
+            className={`${styles.styledButton} ${name === 'signout' ? styles.signOut : ''} ${name === 'login' ? styles.signIn : ''}`}
             onClick={onClick}
         >
             {buttonType(name)}

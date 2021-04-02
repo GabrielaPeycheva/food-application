@@ -13,6 +13,7 @@ const Button = ({ onClick, name }) => {
             case 'add': return 'add to my recipes';
             case 'delete': return 'Delete';
             case 'home': return  'go to homepage';
+            case 'go back': return 'go back';
             default: return '';
         }
     };

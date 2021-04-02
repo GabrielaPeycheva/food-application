@@ -29,7 +29,7 @@ const MyRecipes = (props) => {
             <h1>My Recipes</h1>
             <div className={styles.recipesTitleWrapper}>
                 { !isLoading
-                    ? recipes.length
+                    ? recipes
                         ? <RecipeList recipes={recipes} match={props.match} path='saved-recipes' name='delete'/>
                         : <h1>No Saved Recipes</h1>
                     : <Spinner/>

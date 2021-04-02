@@ -28,7 +28,7 @@ const RecipeList = ({ recipes, path, name }) => {
                         image: res.image,
                         readyInMinutes: res.readyInMinutes,
                         ingredients: res.extendedIngredients,
-                        saved: savedRecipes.find(r => r.id === res.id),
+                        saved: savedRecipes.filter(r => r.id === res.id),
                         deleted: savedRecipes.find(r => r.id !== res.id)
                     })
                     setIsModalOpen(true);
@@ -40,15 +40,16 @@ const RecipeList = ({ recipes, path, name }) => {
     const saveHandler = () => {
         savedRecipes.push(recipeDetails);
         window.sessionStorage.setItem(currentUser.email, JSON.stringify(savedRecipes));
-
+        setIsModalOpen(false);
     }
 
     const deleteHandler = (id) => {
         let updatedRecipes = savedRecipes.filter( a => a.id !== id);
         window.sessionStorage.setItem(currentUser.email, JSON.stringify(updatedRecipes));
+        // setIsModalOpen(false);
     }
 
-    useEffect(() => deleteHandler(),[currentUser.email])
+    // useEffect(() => deleteHandler(),[recipeDetails.deleted,recipeDetails.saved])
     return (
         <React.Fragment>
             { recipes && recipes.length ?

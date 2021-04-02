@@ -31,7 +31,7 @@ const Modal = ({
                             <h3>Ingredients:</h3>
                             <div className={styles.ingrWrapper}>
                             { recipeDetails.ingredients && recipeDetails.ingredients.length && recipeDetails.ingredients.map((ing,i) => {
-                                  return <span key={ing.id + i}>{ing.name}</span>
+                                  return <span key={ing.name}>{ing.name}</span>
                                 })
                             }
                             </div>
@@ -50,15 +50,15 @@ const Modal = ({
                             <p><b>Cooking time:</b> {recipeDetails.readyInMinutes}min</p>
                             <h2>Enjoy!</h2>
                             { name === 'delete'
-                                ? recipeDetails.deleted
-                                ? <p>Deleted</p>
-                                : <Button onClick={() => deleteHandler(recipeDetails.id)} className={styles.addButton} name='delete'/>
+                                ? recipeDetails.deleted === -1
+                                    ? <p>Deleted</p>
+                                    : <Button onClick={deleteHandler(recipeDetails.id)} className={styles.addButton} name='delete'/>
                                 : null
                             }
                             { name === 'add'
-                                ? recipeDetails.saved
-                                ? <p>Added</p>
-                                : <Button onClick={saveHandler} className={styles.addButton} name='add'/>
+                                 ? recipeDetails.saved.length
+                                    ? <p>Added</p>
+                                    : <Link to={`/${path}`}><Button onClick={saveHandler} className={styles.addButton} name='add'/></Link>
                                 :null
                             }
                         </div>

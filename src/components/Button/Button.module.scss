@@ -33,6 +33,14 @@
         }
     }
 
+    &.addButton {
+        background: #733e3e;
+        &:hover {
+            background: #9b6e6e;
+            color: #733e3e;
+        }
+    }
+
     &:hover {
         color:#d38e0d;
         background: #f5eeeee1;

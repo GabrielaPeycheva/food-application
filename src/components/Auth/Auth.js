@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import config from '../../config';
+import config from '../../utils/config';
 import Spinner from '../Spinner/Spinner';
 
 export const AuthContext = React.createContext();

@@ -34,7 +34,8 @@ const RecipePage = (props) => {
             {  isLoading
                 ? <Spinner/>
                 : recipes.length
-                    ? <RecipeList recipes={recipes} match={props.match}/>
+                // : recipes
+                    ? <RecipeList recipes={recipes} match={props.match} path='recipes' name='add'/>
                     : <h1>Sorry, we did not found recipes with this name :(</h1>
             }
         </div>

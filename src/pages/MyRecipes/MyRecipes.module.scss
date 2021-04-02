@@ -1,0 +1,27 @@
+@import '../../sass/variables';
+
+.savedRecipesWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    min-height: calc(100vh - 137px);
+    margin: 20px 50px;
+    box-sizing: border-box;
+
+    h1 {
+        background: rgba(255, 255, 255, 0.3);
+        padding: 10px 20px;
+        width: 100%;
+        margin: 0 50px;
+        text-align: center;
+    }
+    .recipesTitleWrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+}

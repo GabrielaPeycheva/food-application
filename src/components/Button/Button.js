@@ -10,14 +10,20 @@ const Button = ({ onClick, name }) => {
             case 'login': return 'sign in';
             case 'register': return 'register';
             case 'signout': return  'sign out';
+            case 'add': return 'add to my recipes';
+            case 'delete': return 'Delete';
             case 'home': return  'go to homepage';
             default: return '';
         }
     };
-    console.log(typeof name,'name')
+
     return (
         <button
-            className={`${styles.styledButton} ${name === 'signout' ? styles.signOut : ''} ${name === 'login' ? styles.signIn : ''}`}
+            className = {` ${styles.styledButton}
+             ${name === 'signout' ? styles.signOut : ''} 
+             ${name === 'login' ? styles.signIn : ''}
+             ${name === 'add' || name === 'delete' ? styles.addButton : ''}
+             `}
             onClick={onClick}
         >
             {buttonType(name)}

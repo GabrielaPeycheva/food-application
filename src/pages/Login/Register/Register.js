@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../components/Auth/Auth';
-import config from '../../../config';
+import config from '../../../utils/config';
 import Input from '../../../components/Input/Input';
 import Button from '../../../components/Button/Button';
 

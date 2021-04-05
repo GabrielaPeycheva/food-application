@@ -5,14 +5,10 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
     align-items: start;
-    //margin: 5%;
     overflow: auto;
-    height: calc(100% - #{$headerHeight});
+    //height: calc(100% - #{$headerHeight});
     min-height: calc(100vh - 97px);
-    //margin-top: $headerHeight;
-    &::-webkit-scrollbar {
-        //display: none;
-    }
+
 
     h1 {
         background: $colorFadedWhite;

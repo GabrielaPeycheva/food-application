@@ -31,7 +31,12 @@ const Modal = ({
                             <h3>Ingredients:</h3>
                             <div className={styles.ingrWrapper}>
                             { recipeDetails.ingredients && recipeDetails.ingredients.length && recipeDetails.ingredients.map((ing,i) => {
-                                  return <span key={ing.name}>{ing.name}</span>
+                                  i++;
+                                  return(
+                                      <>
+                                        <span key={ing.name + i}>{i++}. {ing.name}</span>
+                                      </>
+                                    )
                                 })
                             }
                             </div>

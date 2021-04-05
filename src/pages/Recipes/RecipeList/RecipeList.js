@@ -1,11 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import Spinner from '../../../components/Spinner/Spinner';
+import RecipeCard from '../RecipeCard/RecipeCard';
 import Modal from '../../../components/Modal/Modal';
 import { AuthContext } from '../../../context/AuthContext';
 import * as foodService from '../../../services/foodService';
-
-import styles from './RecipeList.module.scss';
 
 const RecipeList = ({ recipes, path, name }) => {
     const [recipeDetails, setRecipeDetails] = useState({});
@@ -53,11 +52,16 @@ const RecipeList = ({ recipes, path, name }) => {
             { recipes && recipes.length ?
                 recipes.map((res) =>
                     <NavLink to={{pathname: `${path}/details/id`, search:`${res.id}`}} key={res.id}>
-                        <div className={styles.recipeContainer} onClick={() => getDetails(res.id)}>
-                            <p>{res.title}</p>
-                            <img src={res.image} className={styles.recipeImg} width="350" alt={res.title} />
-                            <p>View recipe</p>
-                        </div>
+                        {/*<div className={styles.recipeContainer} onClick={() => getDetails(res.id)}>*/}
+                        {/*    <p>{res.title}</p>*/}
+                        {/*    <img src={res.image} className={styles.recipeImg} width="350" alt={res.title} />*/}
+                        {/*    <p>View recipe</p>*/}
+                        {/*</div>*/}
+                        <RecipeCard
+                            onClick={() => getDetails(res.id)}
+                            title={res.title}
+                            src={res.image}
+                        />
                     </NavLink>)
                  : <Spinner/>
             }

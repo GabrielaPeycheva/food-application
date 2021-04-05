@@ -10,7 +10,7 @@ const Login = () => {
     const [err, setErr] = useState('');
     const { currentUser } = useContext(AuthContext);
 
-    const handleLogin = useCallback(
+    const onSubmitHandler = useCallback(
         async event => {
             event.preventDefault();
             const { email, password } = event.target.elements;
@@ -38,7 +38,7 @@ const Login = () => {
     return (
         <div className={styles.wrapperContainer}>
             <h1 className={styles.header}>Sign In</h1>
-            <Form handleLogin={handleLogin} err={err} name='login'/>
+            <Form onSubmitHandler={onSubmitHandler} err={err} name='login'/>
             <Link to="/register" className={styles.registerBtn}>Register now</Link>
         </div>
     );

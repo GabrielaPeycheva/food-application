@@ -11,15 +11,6 @@
     transition: visibility 0.2s ease-out;
     background: $colorFadedWhite;
 
-    //.form {
-    //    flex-direction: column;
-    //    display: flex;
-    //    padding: 10px 20px;
-    //    box-sizing: border-box;
-    //    align-items: center;
-    //    min-width: 310px;
-    //}
-
     .header {
         text-align: center;
         padding: 5px;
@@ -28,45 +19,24 @@
         border-bottom: 2px solid #fff;
     }
 
-    //.box {
+    //.passwordState {
     //    display: flex;
-    //    flex-direction: column;
-    //    justify-content: center;
+    //    flex-direction: row;
+    //    margin-top: 20px;
     //
-    //    .inputGroup {
-    //        display: flex;
-    //        flex-direction: column;
-    //        margin-top: 5px;
-    //        margin-bottom: 5px;
-    //    }
     //}
 
-    .passwordState {
-        display: flex;
-        flex-direction: row;
-        margin-top: 20px;
-
-    }
-
-    //.dangerError {
-    //    background: #e74c3c;
-    //    font-size: 16px;
-    //    margin: 5px 0;
-    //    padding: 2px;
-    //    text-align: center;
-    //    max-width: 263px;
-    //    word-break: break-word;
-    //}
     .show {
         visibility: visible;
     }
+
     .registerBtn{
         font-size: 1.6em;
         font-weight: bold;
         text-decoration: underline;
-    }
-    .registerBtn:hover {
-        color: #157919;
+        &:hover {
+            color: #157919;
+        }
     }
 
     .signedIn {

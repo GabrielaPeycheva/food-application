@@ -15,9 +15,7 @@ const Register = () => {
         event.preventDefault();
         const { email, password } = event.target.elements;
         try {
-            await config
-                .auth()
-                .createUserWithEmailAndPassword(email.value, password.value);
+            await config.auth().createUserWithEmailAndPassword(email.value, password.value);
         } catch (error) {
             setErr(error.message);
         }

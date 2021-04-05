@@ -46,10 +46,8 @@ const RecipeList = ({ recipes, path, name }) => {
     const deleteHandler = (id) => {
         let updatedRecipes = savedRecipes.filter( a => a.id !== id);
         window.sessionStorage.setItem(currentUser.email, JSON.stringify(updatedRecipes));
-        // setIsModalOpen(false);
     }
 
-    // useEffect(() => deleteHandler(),[recipeDetails.deleted,recipeDetails.saved])
     return (
         <React.Fragment>
             { recipes && recipes.length ?
@@ -66,7 +64,6 @@ const RecipeList = ({ recipes, path, name }) => {
             <Modal
                 saveHandler={saveHandler}
                 deleteHandler={deleteHandler}
-                savedRecipes={savedRecipes}
                 recipeDetails={recipeDetails}
                 isModalOpen={isModalOpen}
                 isLoading={isLoading}

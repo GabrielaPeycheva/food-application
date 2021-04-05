@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import Spinner from '../../../components/Spinner/Spinner';
 import Modal from '../../../components/Modal/Modal';
-import { AuthContext } from '../../../components/Auth/Auth';
+import { AuthContext } from '../../../context/AuthContext';
 import * as foodService from '../../../services/foodService';
 
 import styles from './RecipeList.module.scss';

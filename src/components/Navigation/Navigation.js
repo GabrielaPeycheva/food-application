@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import config from '../../utils/config';
-import { AuthContext } from '../Auth/Auth';
+import { AuthContext } from '../../context/AuthContext';
 import Button from '../Button/Button';
 
 import styles from './Navigation.module.scss';

@@ -1,17 +1,17 @@
 import React, { useCallback, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../../components/Auth/Auth';
+import { AuthContext } from '../../../context/AuthContext';
 import config from '../../../utils/config';
-import Input from '../../../components/Input/Input';
+import Form from '../../../components/Form/Form';
 import Button from '../../../components/Button/Button';
 
 import styles from '../Login-Register.module.scss';
 
 const Register = () => {
-
+    const { currentUser } = useContext(AuthContext);
     const [err, setErr] = useState('');
 
-    const handleRegister = useCallback(async event => {
+    const onSubmitHandler = useCallback(async event => {
         event.preventDefault();
         const { email, password } = event.target.elements;
         try {
@@ -22,8 +22,6 @@ const Register = () => {
             setErr(error.message);
         }
     }, []);
-
-    const { currentUser } = useContext(AuthContext);
 
     if (currentUser) {
         return (
@@ -36,20 +34,7 @@ const Register = () => {
     return (
         <div className={styles.wrapperContainer}>
             <h1 className={styles.header}>Register</h1>
-            <form onSubmit={handleRegister}>
-                <div className={styles.box}>
-                    <div className={styles.inputGroup}>
-                        <label htmlFor='email'>Email</label>
-                        <Input name='email' type="email" placeholder="Email" />
-                    </div>
-                    <div className={styles.inputGroup}>
-                        <label htmlFor='password'>Password</label>
-                        <Input name="password" type="password" placeholder="Password" />
-                        {err ? <small className={styles.dangerError}>{err}</small> : null }
-                    </div>
-                    <Button type="submit" name='register' />
-                </div>
-            </form>
+            <Form onSubmitHandler={onSubmitHandler} err={err} name='register'/>
         </div>
     );
 };

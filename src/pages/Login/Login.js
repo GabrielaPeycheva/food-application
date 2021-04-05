@@ -1,14 +1,14 @@
 import React, { useCallback, useContext, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import Input from '../../components/Input/Input';
-import Button from '../../components/Button/Button';
-import { AuthContext } from '../../components/Auth/Auth';
+import Form from '../../components/Form/Form';
+import { AuthContext } from '../../context/AuthContext';
 import config from '../../utils/config';
 
 import styles from  './Login-Register.module.scss';
 
 const Login = () => {
     const [err, setErr] = useState('');
+    const { currentUser } = useContext(AuthContext);
 
     const handleLogin = useCallback(
         async event => {
@@ -25,8 +25,6 @@ const Login = () => {
         []
     );
 
-    const { currentUser } = useContext(AuthContext);
-
     if (currentUser) {
         return (
             <Redirect to="/recipes" />
@@ -40,20 +38,7 @@ const Login = () => {
     return (
         <div className={styles.wrapperContainer}>
             <h1 className={styles.header}>Sign In</h1>
-            <form className={styles.form} onSubmit={handleLogin}>
-                <div className={styles.box}>
-                    <div className={styles.inputGroup}>
-                        <label htmlFor='email'>Email</label>
-                        <Input name="email" type="email" placeholder="Email" />
-                    </div>
-                    <div className={styles.inputGroup}>
-                        <label htmlFor='password'>Password</label>
-                        <Input name="password" type="password" placeholder="Password" />
-                        {err ? <small className={styles.dangerError}>{err}</small> : null}
-                    </div>
-                    <Button type="submit" name='login' />
-                </div>
-            </form>
+            <Form handleLogin={handleLogin} err={err} name='login'/>
             <Link to="/register" className={styles.registerBtn}>Register now</Link>
         </div>
     );

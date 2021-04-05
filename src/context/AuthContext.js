@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import config from '../../utils/config';
-import Spinner from '../Spinner/Spinner';
+import config from '../utils/config';
+import Spinner from '../components/Spinner/Spinner';
 
 export const AuthContext = React.createContext();
 

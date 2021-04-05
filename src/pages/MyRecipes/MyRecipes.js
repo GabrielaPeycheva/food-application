@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { AuthContext } from '../../components/Auth/Auth';
+import { AuthContext } from '../../context/AuthContext';
 import RecipeList from '../Recipes/RecipeList/RecipeList';
 import Spinner from '../../components/Spinner/Spinner';
 

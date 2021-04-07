@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { RecipeProvider } from './context/RecipeContext';
 import PrivateRoute from './components/Auth/PrivateRoute';
 import Header from './components/Header/Header';
 import Home from './pages/Home/Home';
@@ -19,19 +20,21 @@ class App extends Component {
     render(){
         return (
             <AuthProvider>
-                <div className="body">
-                    <Header />
-                    <Switch>
-                        <Route path="/" exact component={Home} />
-                        <PrivateRoute path="/recipes" component={RecipePage} />
-                        <Route path="/login" component={Login} />
-                        <Route path="/register" component={Register} />
-                        <PrivateRoute path="/food-facts" component={FoodFacts} />
-                        <PrivateRoute path="/saved-recipes" component={MyRecipes} />
-                        <Route component={NotFound} />
-                    </Switch>
-                    <Footer />
-                </div>
+                <RecipeProvider>
+                    <div className="body">
+                        <Header />
+                        <Switch>
+                            <Route path="/" exact component={Home} />
+                            <PrivateRoute path="/recipes" component={RecipePage} />
+                            <Route path="/login" component={Login} />
+                            <Route path="/register" component={Register} />
+                            <PrivateRoute path="/food-facts" component={FoodFacts} />
+                            <PrivateRoute path="/saved-recipes" component={MyRecipes} />
+                            <Route component={NotFound} />
+                        </Switch>
+                        <Footer />
+                    </div>
+                </RecipeProvider>
             </AuthProvider>
         );
     }

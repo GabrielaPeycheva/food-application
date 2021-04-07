@@ -1,41 +1,21 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { AuthContext } from '../../context/AuthContext';
+import React, { useContext } from 'react';
 import RecipeList from '../Recipes/RecipeList/RecipeList';
-import Spinner from '../../components/Spinner/Spinner';
+import { RecipeContext } from '../../context/RecipeContext';
 
 import styles from './MyRecipes.module.scss';
 
-const MyRecipes = (props) => {
-    const { currentUser } = useContext(AuthContext);
-    const [recipes, setRecipes] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-
-    useEffect(() => {
-        setIsLoading(true)
-        let values = [];
-        let keys = Object.keys(sessionStorage);
-        let i = keys.length;
-
-        while ( i-- ) {
-            values.push(JSON.parse(sessionStorage.getItem(keys[i])));
-        }
-
-        setRecipes(JSON.parse(sessionStorage.getItem(currentUser.email)));
-        setIsLoading(false);
-    }, [currentUser.email]);
+const MyRecipes = ({ match }) => {
+    const { savedRecipes } = useContext(RecipeContext);
 
     return (
         <div className={styles.savedRecipesWrapper}>
             <h1>My Recipes</h1>
             <div className={styles.recipesTitleWrapper}>
-                { !isLoading
-                    ? recipes && recipes.length
-                        ? <RecipeList recipes={recipes} match={props.match} path='saved-recipes' name='delete'/>
-                        : <h1>No Saved Recipes</h1>
-                    : <Spinner/>
+                { savedRecipes && savedRecipes.length
+                    ? <RecipeList recipes={savedRecipes} match={match} path='saved-recipes' name='delete'/>
+                    : <h1>No Saved Recipes</h1>
                 }
             </div>
-
         </div>
     );
 };

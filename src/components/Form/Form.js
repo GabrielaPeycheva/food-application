@@ -9,7 +9,6 @@ const Form = ({
       err,
       name
 }) => {
-    console.log(onSubmitHandler, err)
     return (
             <form className={styles.form} onSubmit={onSubmitHandler}>
                 <div className={styles.box}>

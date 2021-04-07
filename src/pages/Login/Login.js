@@ -15,15 +15,11 @@ const Login = () => {
             event.preventDefault();
             const { email, password } = event.target.elements;
             try {
-                await config
-                    .auth()
-                    .signInWithEmailAndPassword(email.value, password.value);
+                await config.auth().signInWithEmailAndPassword(email.value, password.value);
             } catch (error) {
                 setErr(error.message);
             }
-        },
-        []
-    );
+        },[]);
 
     if (currentUser) {
         return (

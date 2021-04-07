@@ -34,7 +34,7 @@ const Modal = ({
                                   i++;
                                   return(
                                       <>
-                                        <span key={ing.name + i}>{i++}. {ing.name}</span>
+                                        <span key={ing.name + i.toString()}>{i++}. {ing.name}</span>
                                       </>
                                     )
                                 })
@@ -46,7 +46,7 @@ const Modal = ({
                                     return (
                                         <>
                                             <p key={r.name}><b>{r.name}</b></p>
-                                            {r.steps.map(s => { return <p key={s.step}>{s.number}. {s.step}</p>})}
+                                            {r.steps.map(s => { return <p key={s.number.toString()}>{s.number}. {s.step}</p>})}
                                         </>
                                     )
                                     })
@@ -57,13 +57,33 @@ const Modal = ({
                             { name === 'delete'
                                 ? recipeDetails.deleted === -1
                                     ? <p>Deleted</p>
-                                    : <Button onClick={deleteHandler(recipeDetails.id)} className={styles.addButton} name='delete'/>
+                                    :
+                                    <Link to={`/${path}`}>
+                                        <Button
+                                        onClick={() => {
+                                        deleteHandler(recipeDetails.id);
+                                        handleClose();
+                                        }}
+                                        className={styles.addButton}
+                                        name='delete'
+                                       />
+                                    </Link>
                                 : null
                             }
                             { name === 'add'
                                  ? recipeDetails.saved.length
                                     ? <p>Added</p>
-                                    : <Link to={`/${path}`}><Button onClick={saveHandler} className={styles.addButton} name='add'/></Link>
+                                    :
+                                    <Link to={`/${path}`}>
+                                        <Button
+                                            onClick={() => {
+                                            saveHandler(recipeDetails);
+                                            handleClose();
+                                            }}
+                                            className={styles.addButton}
+                                            name='add'
+                                        />
+                                    </Link>
                                 :null
                             }
                         </div>

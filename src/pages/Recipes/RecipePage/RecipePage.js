@@ -6,19 +6,19 @@ import * as foodService from '../../../services/foodService';
 
 import styles from './RecipePage.module.scss';
 
+
 const RecipePage = (props) => {
     const [recipes, setRecipes] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     const onClick = (params) => {
         setIsLoading(true);
-        foodService.getSearchedRecipes(params)
-            .then(res => {
-                setRecipes(res.results);
-                setIsLoading(false);
-            });
-
-    }
+             foodService.getSearchedRecipes(params)
+                .then(res => {
+                    setRecipes(res.results);
+                    setIsLoading(false);
+                });
+    };
 
     useEffect(() => {
         foodService.getRandomRecipes()
@@ -33,8 +33,7 @@ const RecipePage = (props) => {
             <SearchInput onClick={onClick} />
             {  isLoading
                 ? <Spinner/>
-                : recipes.length
-                // : recipes
+                : recipes && recipes.length
                     ? <RecipeList recipes={recipes} match={props.match} path='recipes' name='add'/>
                     : <h1>Sorry, we did not found recipes with this name :(</h1>
             }

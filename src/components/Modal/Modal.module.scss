@@ -13,13 +13,11 @@
     overflow-y: initial !important;
 
     * {
-        scrollbar-width: thin;
         scrollbar-color: #efdbcd transparent;
     }
 
-    /* Works on Chrome, Edge, and Safari */
     *::-webkit-scrollbar {
-        width: 15px;
+        width: 10px;
     }
 
     *::-webkit-scrollbar-track {
@@ -43,8 +41,8 @@
         background-size: 50%, 50%;
         box-shadow: 5px 5px 10px black;
         background: #efdbcd;
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
+        //border-top-left-radius: 5px;
+        //border-bottom-left-radius: 5px;
         overflow-y: auto;
         position: relative;
         color: #753f3f;
@@ -68,15 +66,19 @@
 
         .ingrWrapper {
             display: flex;
-            //flex-direction: column;
+            flex-direction: column;
             flex-wrap: wrap;
             //height: 150px;
+            img { margin: 0; }
             span {
-                background: #864747;
-                padding: 5px 10px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background: #FFF;
+                padding: 3px 10px;
                 margin: 5px;
                 border-radius: 7px;
-                color: white;
+                color: #864747;
                 text-align: center;
                 min-width: 50px;
             }
@@ -87,9 +89,9 @@
             border: none;
             cursor: pointer;
             display: flex;
-            height: 16px;
+            height: 20px;
             text-decoration: none;
-            width: 16px;
+            width: 20px;
 
             svg {
                 position: relative;

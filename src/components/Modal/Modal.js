@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Spinner from '../Spinner/Spinner';
 import Button from '../Button/Button';
+import { ReactComponent as CheckIcon } from '../../assets/images/icon-check.svg';
+import { ReactComponent as CloseIcon } from '../../assets/images/icon-close.svg';
+import { IMAGE_URL } from '../../services/foodService';
 
 import styles from './Modal.module.scss';
 
@@ -18,36 +21,34 @@ const Modal = ({
     return (
         <React.Fragment>
             {  isModalOpen && recipeDetails
-                ? <div className={`${styles.modalWrapper}`}>
+                ? <div className={`${styles.modalWrapper}`} key={recipeDetails.id}>
                         <div className={styles.modal}>
                             <Link to={`/${path}`} className={styles.close} onClick={handleClose}>
-                                <svg viewBox="0 0 24 24">
-                                    <path
-                                        d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/>
-                                </svg>
+                                <CloseIcon />
                             </Link>
                             <h2>{recipeDetails.title}</h2>
                             <img src={recipeDetails.image}  alt={recipeDetails.title} />
                             <h3>Ingredients:</h3>
                             <div className={styles.ingrWrapper}>
-                            { recipeDetails.ingredients && recipeDetails.ingredients.length && recipeDetails.ingredients.map((ing,i) => {
-                                  i++;
-                                  return(
-                                      <>
-                                        <span key={ing.name + i.toString()}>{i++}. {ing.name}</span>
-                                      </>
+                            { isLoading === false && recipeDetails.ingredients && recipeDetails.ingredients.length && recipeDetails.ingredients.map((ing,i) => {
+                                return (
+                                        <span key={ing.id + i.toString()}>
+                                            - {ing.originalString}
+                                            <img src={`${IMAGE_URL + ing.image}`} height="50" alt={ing.name}/>
+                                        </span>
+
                                     )
                                 })
                             }
                             </div>
                             <h3>Instructions:</h3>
                             { isLoading === false && recipeDetails.steps
-                                ? recipeDetails.steps.map(r => {
+                                ? recipeDetails.steps.map((r,i) => {
                                     return (
-                                        <>
-                                            <p key={r.name}><b>{r.name}</b></p>
-                                            {r.steps.map(s => { return <p key={s.number.toString()}>{s.number}. {s.step}</p>})}
-                                        </>
+                                        <div key={recipeDetails.id.toString() + r.name}>
+                                            <p key={r.name + i.toString()}><b>{r.name}</b></p>
+                                            {r.steps.map(s => { return <p key={s.number.toString() + s.step}><b>{s.number}.</b> {s.step}</p>})}
+                                        </div>
                                     )
                                     })
                                 : null
@@ -72,7 +73,10 @@ const Modal = ({
                             }
                             { name === 'add'
                                  ? recipeDetails.saved.length
-                                    ? <p>Added</p>
+                                    ?   <h4>
+                                            Added &nbsp;
+                                            <CheckIcon />
+                                        </h4>
                                     :
                                     <Link to={`/${path}`}>
                                         <Button

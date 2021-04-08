@@ -47,19 +47,22 @@ const RecipeList = ({ recipes, path, name }) => {
                     </NavLink>)
                  : <Spinner/>
             }
-            <Modal
-                saveHandler={saveHandler}
-                deleteHandler={deleteHandler}
-                recipeDetails={recipeDetails}
-                isModalOpen={isModalOpen}
-                isLoading={isLoading}
-                path={path}
-                name={name}
-                handleClose={() => {
-                    setIsModalOpen(false);
-                    setRecipeDetails({});
-                }}
-            />
+            { isLoading
+                ? <Spinner/>
+                : <Modal
+                        saveHandler={saveHandler}
+                        deleteHandler={deleteHandler}
+                        recipeDetails={recipeDetails}
+                        isModalOpen={isModalOpen}
+                        isLoading={isLoading}
+                        path={path}
+                        name={name}
+                        handleClose={() => {
+                            setIsModalOpen(false);
+                            setRecipeDetails({});
+                        }}
+                    />
+            }
         </React.Fragment>
     );
 };
